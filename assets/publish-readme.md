@@ -35,23 +35,55 @@ moqian-project-scaffold/
 
 ## 安装方式
 
-### 方式一：克隆到技能目录
-将整个技能目录放入目标环境的技能目录（不同 Agent 宿主位置略有差异）：
+### 方式一：一句话让当前 Agent 自动安装（推荐，跨工具）
+在你正在使用的 Agent 工具对话框里直接粘贴下面这段指令，Agent 会自己识别工具类型、定位技能目录、克隆仓库并校验安装结果，无需手动进入文件夹操作：
 
-```bash
-# 通用 Agent Skills 目录示例
-git clone https://github.com/<owner>/moqian-project-scaffold.git \
-  /path/to/skills/moqian-project-scaffold
+```text
+请帮我安装 GitHub 技能仓库 https://github.com/zhaoxuejie/moqian-project-scaffold ：
+1. 识别当前 Agent 工具，定位它对应的全局技能目录（见下方对照表）；
+2. 将整个仓库克隆为 <技能目录>/moqian-project-scaffold/；
+3. 校验 moqian-project-scaffold/SKILL.md 与 scripts/scaffold.py 都存在；
+4. 告诉我重启会话后如何触发该技能。
 ```
 
-常见宿主目录：
-- 豆包 / Doubao 工作区：`~/.doubao/agent_mode/workspace/.user_skills/`
-- 通用规范：`.agents/skills/`、`.skills/`
+各主流 Agent 工具的技能目录约定：
 
-### 方式二：手工复制
-把 `moqian-project-scaffold/` 文件夹整体复制到上述技能目录，保持 `SKILL.md` 在技能根下即可。
+| Agent 工具 | 全局（用户级）目录 | 项目级目录 |
+| ---- | ---- | ---- |
+| Claude Code | `~/.claude/skills/` | `.claude/skills/` |
+| Codex CLI | `~/.codex/skills/`（亦识别 `.agents/skills/`） | `.codex/skills/` |
+| DeepSeek Harness / Deep Code | `~/.agents/skills/` | `./.deepcode/skills/` |
+| Cursor | `~/.cursor/skills/` | `.cursor/skills/` |
+| 通用 Agent Skills 标准 | `~/.agents/skills/` | `./.agents/skills/` |
+| 豆包 / Doubao 工作区 | `~/.doubao/agent_mode/workspace/.user_skills/` | — |
 
-安装后无需额外配置；Agent 会根据 `SKILL.md` 的 `description` 自动识别触发场景。
+> 跨工具最通用的落点是 `~/.agents/skills/moqian-project-scaffold/`；不确定当前工具目录时，让 Agent 先探测本机已有的 skills 目录再安装。
+> 新安装的技能需要**重启会话**（Claude Code 可用 `/reload-skills`）后才会被扫描识别。
+
+### 方式二：skills CLI 一键安装（需 Node.js）
+在兼容 Agent Skills 规范、且提供 `skills` CLI 的环境中，可直接命令行安装到指定工具：
+
+```bash
+# 安装到 Codex 全局技能目录
+npx skills add zhaoxuejie/moqian-project-scaffold --skill moqian-project-scaffold --agent codex --global
+
+# 安装到 Claude Code 全局技能目录
+npx skills add zhaoxuejie/moqian-project-scaffold --skill moqian-project-scaffold --agent claude-code --global
+```
+
+> 说明：本仓库 `SKILL.md` 位于仓库根目录；若所用 CLI 要求技能放在 `skills/<name>/` 子目录结构中，请改用方式一或方式三。
+
+### 方式三：手动克隆 / 复制（兜底）
+将整个技能目录放入上表对应工具的技能目录：
+
+```bash
+git clone https://github.com/zhaoxuejie/moqian-project-scaffold.git \
+  <技能目录>/moqian-project-scaffold
+```
+
+也可以下载 ZIP 解压后，把 `moqian-project-scaffold/` 文件夹整体复制到技能目录，保持 `SKILL.md` 在技能根下即可。
+
+安装后无需额外配置；Agent 会根据 `SKILL.md` 的 `description` 自动识别触发场景。安装校验：目录内同时存在 `SKILL.md`、`scripts/scaffold.py`、`references/after-scaffold.md`。
 
 ## 使用方法
 
