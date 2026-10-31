@@ -9,6 +9,29 @@
 
 ---
 
+## 安装后会得到什么
+
+运行技能后，新项目会得到一套完整的 AI 工程治理骨架：
+
+```
+<project-name>/
+├── README.md / AGENTS.md / CONTRIBUTING.md / CHANGELOG.md / LICENSE
+├── .env.example / .gitignore / .gitattributes / .markdownlint.json
+├── docs/
+│   ├── prompt.md          # 新会话基座提示词，粘贴即可恢复完整规范上下文
+│   ├── stage-prompts.md   # 分阶段指令库（PRD / 架构 / 接口 / 拆任务 / 开发 / 发布）
+│   ├── prd.md             # 产品需求文档模板
+│   ├── architecture.md    # 架构方案 + ADR 决策记录模板
+│   ├── api-contract.md    # 接口契约模板
+│   ├── tasks/             # 增量任务卡看板（一任务一文件）
+│   └── archive/           # MAJOR 版本快照归档
+├── scripts/release.sh     # 版本发布脚本
+├── tests/                 # 测试与评测集目录
+└── .github/workflows/ci.yml
+```
+
+> 脚手架只准备骨架、不编写业务代码；生成后按 `docs/stage-prompts.md` 从 PRD 阶段依次推进。
+
 ## 它能做什么
 
 | 步骤 | 自动处理 |
@@ -139,25 +162,6 @@ python scripts/scaffold.py --name demo --no-git
 - 已安装 `git`，并能访问模板仓库
 - 已安装 Python 3
 - Git 已配置提交身份（`user.name` / `user.email`）；缺失时脚本会在新仓库设置本地兜底身份
-
-## 生成的新项目包含什么
-
-```
-<project-name>/
-├── README.md / AGENTS.md / CONTRIBUTING.md / CHANGELOG.md / LICENSE
-├── .env.example / .gitignore / .gitattributes / .markdownlint.json
-├── docs/
-│   ├── prompt.md              # 新会话基座提示词
-│   ├── stage-prompts.md       # 分阶段指令库
-│   ├── prd.md / architecture.md / api-contract.md
-│   ├── archive/
-│   └── tasks/                 # 空任务索引看板
-├── scripts/release.sh
-├── tests/
-└── .github/workflows/ci.yml
-```
-
-> 脚手架只负责准备骨架，不编写业务代码。生成后按 `docs/stage-prompts.md` 从 PRD 阶段依次推进。
 
 ## 工程规范
 生成的项目遵循陌阡 AI 工程治理框架：先文档后代码、增量任务卡、ADR 追加式记录、MAJOR 版本快照归档。详见新项目内 `AGENTS.md`。
