@@ -10,7 +10,7 @@ description: "基于陌阡AI工程治理模板（GitHub 仓库 zhaoxuejie/moqian
 
 ## 前置条件
 - 本机已安装 `git` 并可访问 `https://github.com/zhaoxuejie/moqian-ai-template`。
-- 运行脚本使用本机 `python`。
+- 运行脚本使用本机 `python`，要求 **Python 3.11 及以上**（脚本已兼容 3.11 / 3.12 / 3.13）。
 - 模板自身的工程规则（先文档后代码、增量任务卡、MAJOR 归档等）见新项目内 `AGENTS.md` 与 `docs/prompt.md`，本技能只负责"把骨架准备好"，不负责后续业务开发。
 
 ## 工作流程

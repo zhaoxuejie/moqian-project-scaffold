@@ -107,13 +107,21 @@ def run(cmd, cwd=None, check=True):
 
 
 def force_rmtree(path: Path) -> None:
-    """递归删除目录；Windows 上 Git pack 对象为只读，先清除只读位再删。"""
+    """递归删除目录；Windows 上 Git pack 对象为只读，先清除只读位再删。
 
-    def onexc(func, p, _exc):
+    兼容 Python 3.11 与 3.12+：3.12 起 rmtree 的 onerror 弃用、改用 onexc，
+    3.13 起 onerror 已不可用；3.11 仅有 onerror。回调第三个参数在两套接口下
+    分别是 exc_info 元组与异常实例，本实现不使用，统一占位即可。
+    """
+
+    def _reset(func, p, _exc):
         os.chmod(p, stat.S_IWRITE)
         func(p)
 
-    shutil.rmtree(path, onexc=onexc)
+    if sys.version_info >= (3, 12):
+        shutil.rmtree(path, onexc=_reset)
+    else:
+        shutil.rmtree(path, onerror=_reset)
 
 
 def validate_name(name: str) -> None:

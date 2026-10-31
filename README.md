@@ -5,7 +5,7 @@
 - **Skill 名称：** `moqian-project-scaffold`
 - **适用场景：** 用 AI / AI Agent 辅助从零启动新项目；尤其适合担心需求跑偏，或不熟悉 AI 编程协作规范的开发者
 - **依赖模板：** [zhaoxuejie/moqian-ai-template](https://github.com/zhaoxuejie/moqian-ai-template)
-- **运行环境：** Python 3、Git；跨平台（Windows / macOS / Linux）
+- **运行环境：** Python 3.11+、Git；跨平台（Windows / macOS / Linux）
 
 ---
 
@@ -160,7 +160,7 @@ python scripts/scaffold.py --name demo --no-git
 
 ## 前置条件
 - 已安装 `git`，并能访问模板仓库
-- 已安装 Python 3
+- 已安装 Python 3.11 及以上（脚本兼容 3.11 / 3.12 / 3.13）
 - Git 已配置提交身份（`user.name` / `user.email`）；缺失时脚本会在新仓库设置本地兜底身份
 
 ## 工程规范
