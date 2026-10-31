@@ -1,9 +1,9 @@
 # moqian-project-scaffold · AI Agent Skill
 
-> 一个可复用的 **Agent Skill**：基于陌阡 AI 工程治理模板，为新项目一键初始化完整工程骨架——克隆模板、清理示例、重置占位文档、建立独立 Git 历史。只需提供项目名。
+> 一个面向 **AI 编程**场景的 Agent Skill：基于陌阡工程治理模板一键初始化新项目骨架。模板把"需求先写成文档、增量拆任务、决策留痕、上下文存本地"固化为固定流程，帮你在 AI 协作开发中**锁定需求、抑制需求漂移、避免 AI 自由发挥跑偏**；不熟悉 AI 编程协作方式的人，也能照着阶段指令把项目从 0 规范推进到 1。你只需提供项目名，克隆模板、清理示例、重置占位文档、独立 Git 历史全部自动完成。
 
 - **Skill 名称：** `moqian-project-scaffold`
-- **适用场景：** AI Agent、LLM 应用等新项目 0 → 1 的工程目录搭建
+- **适用场景：** 用 AI / AI Agent 辅助从零启动新项目；尤其适合担心需求跑偏，或不熟悉 AI 编程协作规范的开发者
 - **依赖模板：** [zhaoxuejie/moqian-ai-template](https://github.com/zhaoxuejie/moqian-ai-template)
 - **运行环境：** Python 3、Git；跨平台（Windows / macOS / Linux）
 
