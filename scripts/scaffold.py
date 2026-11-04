@@ -10,7 +10,7 @@
                         [--branch main] [--no-git] [--keep-template-history]
 
 示例:
-    python scaffold.py --name finance-agent --parent D:\\projectTrae
+    python scaffold.py --name finance-agent --parent D:\\projects
 """
 
 import argparse
@@ -138,10 +138,7 @@ def validate_name(name: str) -> None:
 
 
 def default_parent() -> Path:
-    """Windows 下优先使用 D:\\projectTrae，否则使用当前工作目录。"""
-    win_default = Path(r"D:\projectTrae")
-    if sys.platform.startswith("win") and win_default.exists():
-        return win_default
+    """默认使用当前工作目录，避免把个人路径写死进公共仓库。"""
     return Path.cwd()
 
 
@@ -216,7 +213,7 @@ def print_tree(target: Path) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="从陌阡AI工程模板初始化新项目骨架")
     parser.add_argument("--name", required=True, help="新项目名称，小写 kebab-case")
-    parser.add_argument("--parent", default=None, help="新项目所在父目录，默认 D:\\projectTrae（Windows）或当前目录")
+    parser.add_argument("--parent", default=None, help="新项目所在父目录，默认当前工作目录")
     parser.add_argument("--template-url", default=DEFAULT_TEMPLATE_URL, help="模板仓库 Git 地址")
     parser.add_argument("--branch", default=DEFAULT_BRANCH, help="模板仓库分支，默认 main")
     parser.add_argument("--no-git", action="store_true", help="只拉取并清理，不初始化 Git 仓库")

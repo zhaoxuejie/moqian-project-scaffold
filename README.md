@@ -130,7 +130,7 @@ python scripts/scaffold.py --name <项目名> [--parent <父目录>]
 | 参数 | 必填 | 说明 | 默认值 |
 | ---- | ---- | ---- | ---- |
 | `--name` | 是 | 项目名，小写 kebab-case（小写字母、数字、连字符） | — |
-| `--parent` | 否 | 新项目所在父目录 | Windows `D:\projectTrae`，其他平台当前目录 |
+| `--parent` | 否 | 新项目所在父目录 | 当前工作目录 |
 | `--template-url` | 否 | 自定义模板仓库 Git 地址 | 陌阡官方模板 |
 | `--branch` | 否 | 模板分支 | `main` |
 | `--no-git` | 否 | 只拉取清理，不初始化 Git | 关闭 |
